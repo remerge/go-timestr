@@ -13,7 +13,7 @@ func init() {
 	go func() {
 		for range time.NewTicker(1 * time.Second).C {
 			timeStrMutex.Lock()
-			updateTimeStr()
+			UpdateTimeStr()
 			timeStrMutex.Unlock()
 		}
 	}()

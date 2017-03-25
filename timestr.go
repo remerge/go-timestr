@@ -7,7 +7,7 @@ var timeToday time.Time
 var timeStrISO8601 = ""
 var timeStrURLSafe = ""
 
-func updateTimeStr() {
+func UpdateTimeStr() {
 	timeNow = time.Now()
 	d := time.Duration(-timeNow.Hour()) * time.Hour
 	timeToday = timeNow.Truncate(time.Hour).Add(d)
