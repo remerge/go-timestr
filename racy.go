@@ -5,6 +5,7 @@ package timestr
 import "time"
 
 func init() {
+	UpdateTimeStr()
 	go func() {
 		for range time.NewTicker(1 * time.Second).C {
 			UpdateTimeStr()

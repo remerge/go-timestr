@@ -10,6 +10,7 @@ import (
 var timeStrMutex = sync.RWMutex{}
 
 func init() {
+	UpdateTimeStr()
 	go func() {
 		for range time.NewTicker(1 * time.Second).C {
 			timeStrMutex.Lock()
