@@ -1,4 +1,4 @@
-PROJECT := timestr
+PROJECT := go-timestr
 PACKAGE := github.com/remerge/$(PROJECT)
 
 # http://stackoverflow.com/questions/322936/common-gnu-makefile-directory-path#comment11704496_324782

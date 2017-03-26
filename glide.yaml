@@ -1,2 +1,2 @@
-package: github.com/remerge/timestr
+package: github.com/remerge/go-timestr
 import: []
