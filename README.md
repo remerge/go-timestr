@@ -6,7 +6,7 @@ string representations with a 1-second precision.
 ## Install
 
 ```bash
-go get github.com/remerge/timestr
+go get github.com/remerge/go-timestr
 ```
 
 ## Usage
@@ -16,8 +16,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/remerge/timestr"
-	)
+	"github.com/remerge/go-timestr"
+)
 
 func main() {
 	fmt.Println(timestr.ISO8601())
