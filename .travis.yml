@@ -1,0 +1,14 @@
+sudo: false
+language: go
+go:
+- '1.8'
+cache:
+  directories:
+  - vendor
+install:
+- make dep
+script:
+- make test clean
+notifications:
+  slack:
+    secure: zFqXyE/TH4HoBQP/ocB3zfhXYdT6qlPmW3OgmPKsfFQ2O/wgNdQtwhrkfXyxC2uD8xrnn0UGH/auXiuS08YjSryI/6NA2RZ4/7QSD1BGxBmBhlnUduXX8xPhl3b67DC2SmExhOGk6h/LUZ3iP+K20/w8fv/am1Sgc8zvPSG8K4G1pvlreFG9TEmgQGrxJ5SFFV3ZhkwmoByvfBrdSXdhEbN/p0nakh9CCXY9Y/TIGFbDV6p60sgJubUvPqJnlrztMm+sRuME5+7m9l8WYn/NPwFBj4L3k+Zs02KaQLVMsfMTDkv3ZHxte+OdhP4nWfqfBZrI0/7IJS4eD4ZgUTq5gGrkvgSi+JZ/r8may8FdBzo3KsO8RcsgbN/Tg8nuwMJG/h1iJ4hUKnfN5asCax/b5eG/DCGoAOrkICQhMAZPjGFtEihU/Cfp7LTx6xju9VOWPgRcSeJacbXY1aYh9IpttlO6Dclr48USU4RY40ESw0SvsvO1paUDrXssEGsjNHnWWIOekYDDwrkyRsfWKgHTc6ae1tRu26pnRPbxPFeEvwhoru+OrMp1UI9CkqjPl21yEHRm4i0SeE15mh2B3rq966HtRo6PmAVL1LbQJBYIQoeqL/HD/s77aHb1zvZAeEKA1RILjqWBuOdXTUkd8Jkqm9wSoa7YbUzd7fgMVJGhbyE=
