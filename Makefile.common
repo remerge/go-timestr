@@ -64,7 +64,7 @@ test: lint
 
 bench: build
 	cd $(GOSRCDIR) && \
-		go test -bench=. -cpu 4 $(GOPATHS)
+		go test -bench=. -benchmem -cpu 4 $(GOPATHS)
 
 escape: build
 	cd $(GOSRCDIR) && \
