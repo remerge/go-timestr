@@ -4,13 +4,15 @@ package timestr
 
 import "time"
 
+func updateTicker() {
+	for range time.NewTicker(1 * time.Second).C {
+		UpdateTimeStr()
+	}
+}
+
 func init() {
 	UpdateTimeStr()
-	go func() {
-		for range time.NewTicker(1 * time.Second).C {
-			UpdateTimeStr()
-		}
-	}()
+	go updateTicker()
 }
 
 // Now returns the current time with a 1-second precision

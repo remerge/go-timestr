@@ -64,7 +64,14 @@ test: lint
 
 bench: build
 	cd $(GOSRCDIR) && \
-		go test -bench=. -cpu 4 $(GOPATHS)
+		go test -bench=. -benchmem -cpu 4 $(GOPATHS)
+
+escape: build
+	cd $(GOSRCDIR) && \
+		CGO_ENABLED=0 \
+		go build -v -gcflags '-m -m -l' -ldflags "$(LDFLAGS)" $(MAINGO)
+
+
 
 fmt:
 	$(GOFMT) $(GOFILES)
