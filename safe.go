@@ -4,6 +4,7 @@ package timestr
 
 import (
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -11,8 +12,12 @@ var timeStrMutex = sync.RWMutex{}
 var ticker *time.Ticker
 var stopped sync.WaitGroup
 var done = make(chan bool)
+var started int32
 
 func updateTicker() {
+	if !atomic.CompareAndSwapInt32(&started, 0, 1) {
+		return
+	}
 	stopped.Add(1)
 	defer stopped.Done()
 	for {
@@ -58,7 +63,10 @@ func URLSafe() string {
 }
 
 func Stop() {
+	if !atomic.CompareAndSwapInt32(&started, 1, 2) {
+		return
+	}
 	ticker.Stop()
-	close(ticker.C)
+	done <- true
 	stopped.Wait()
 }
