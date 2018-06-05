@@ -2,16 +2,31 @@
 
 package timestr
 
-import "time"
+import (
+	"sync"
+	"time"
+)
+
+var ticker *time.Ticker
+var stopped sync.WaitGroup
+var done = make(chan bool)
 
 func updateTicker() {
-	for range time.NewTicker(1 * time.Second).C {
-		UpdateTimeStr()
+	stopped.Add(1)
+	defer stopped.Done()
+	for {
+		select {
+		case <-done:
+			return
+		case <-ticker.C:
+			updateTimeStr()
+		}
 	}
 }
 
 func init() {
-	UpdateTimeStr()
+	updateTimeStr()
+	ticker = time.NewTicker(1 * time.Second)
 	go updateTicker()
 }
 
@@ -33,4 +48,11 @@ func ISO8601() string {
 // URLSafe return a URL-safe version of ISO8601()
 func URLSafe() string {
 	return timeStrURLSafe
+}
+
+// Stop stops the internal ticker and the cached values are not updated anymore
+func Stop() {
+	ticker.Stop()
+	done <- true
+	stopped.Wait()
 }
