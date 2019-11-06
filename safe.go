@@ -43,6 +43,11 @@ func Now() time.Time {
 	defer timeStrMutex.RUnlock()
 	return timeNow
 }
+func NowUTC() time.Time {
+	timeStrMutex.RLock()
+	defer timeStrMutex.RUnlock()
+	return timeNowUTC
+}
 
 func Today() time.Time {
 	timeStrMutex.RLock()
@@ -60,6 +65,18 @@ func URLSafe() string {
 	timeStrMutex.RLock()
 	defer timeStrMutex.RUnlock()
 	return timeStrURLSafe
+
+}
+func ISO8601inUTC() string {
+	timeStrMutex.RLock()
+	defer timeStrMutex.RUnlock()
+	return timeStrISO8601inUTC
+}
+
+func URLSafeinUTC() string {
+	timeStrMutex.RLock()
+	defer timeStrMutex.RUnlock()
+	return timeStrURLSafeinUTC
 }
 
 func Stop() {

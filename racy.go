@@ -40,6 +40,11 @@ func Now() time.Time {
 	return timeNow
 }
 
+// NowUTC returns the current time with a 1-second precision (in UTC TZ)
+func NowUTC() time.Time {
+	return timeNowUTC
+}
+
 // Today returns the current time truncated to midnight
 func Today() time.Time {
 	return timeToday
@@ -50,9 +55,19 @@ func ISO8601() string {
 	return timeStrISO8601
 }
 
+// ISO8601inUTC returns the ISO8601 representation of Now() (in UTC TZ)
+func ISO8601inUTC() string {
+	return timeStrISO8601inUTC
+}
+
 // URLSafe return a URL-safe version of ISO8601()
 func URLSafe() string {
 	return timeStrURLSafe
+}
+
+// URLSafeinUTC return a URL-safe version of ISO8601inUTC() (in UTC TZ)
+func URLSafeinUTC() string {
+	return timeStrURLSafeinUTC
 }
 
 // Stop stops the internal ticker and the cached values are not updated anymore

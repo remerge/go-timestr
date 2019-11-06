@@ -1,6 +1,7 @@
 package timestr
 
 import (
+	"fmt"
 	"testing"
 	"time"
 
@@ -14,6 +15,16 @@ func TestTimeStr(t *testing.T) {
 	SetTimeStr(ts)
 	require.Equal(t, Now(), ts)
 	require.Equal(t, Today(), day)
-	require.Equal(t, ISO8601(), "1982-04-03T12:00:05Z")
-	require.Equal(t, URLSafe(), "1982-04-03T12-00-05Z")
+	require.Equal(t, "1982-04-03T12:00:05Z", ISO8601())
+	require.Equal(t, "1982-04-03T12-00-05Z", URLSafe())
+
+	loc, err := time.LoadLocation("Europe/Berlin")
+	require.NoError(t, err)
+	tsDE := ts.In(loc)
+	SetTimeStr(tsDE)
+	_, offset := tsDE.Zone()
+	require.Equal(t, fmt.Sprintf("1982-04-03T%02d:00:05+%02d:00", tsDE.Hour(), offset/3600), ISO8601())
+	require.Equal(t, fmt.Sprintf("1982-04-03T%02d-00-05+%02d00", tsDE.Hour(), offset/3600), URLSafe())
+	require.Equal(t, "1982-04-03T12:00:05Z", ISO8601inUTC())
+	require.Equal(t, "1982-04-03T12-00-05Z", URLSafeinUTC())
 }
