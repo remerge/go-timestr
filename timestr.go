@@ -10,6 +10,7 @@ const (
 var timeNow time.Time
 var timeNowUTC time.Time
 var timeToday time.Time
+var timeTodayUTC time.Time
 var timeStrISO8601 = ""
 var timeStrURLSafe = ""
 var timeStrISO8601inUTC = ""
@@ -22,8 +23,13 @@ func updateTimeStr() {
 func SetTimeStr(t time.Time) {
 	timeNow = t
 	timeNowUTC = t.UTC()
+
 	d := time.Duration(-t.Hour()) * time.Hour
 	timeToday = t.Truncate(time.Hour).Add(d)
+
+	d = time.Duration(-timeNowUTC.Hour()) * time.Hour
+	timeTodayUTC = timeNowUTC.Truncate(time.Hour).Add(d)
+
 	timeStrISO8601 = t.Format(ISO8601TimeFormat)
 	timeStrISO8601inUTC = timeNowUTC.Format(ISO8601TimeFormat)
 	timeStrURLSafe = t.Format(URLSafeTimeFormat)

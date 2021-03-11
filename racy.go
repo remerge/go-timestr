@@ -50,6 +50,11 @@ func Today() time.Time {
 	return timeToday
 }
 
+// Today returns the current time truncated to midnight (in UTC TZ)
+func TodayUTC() time.Time {
+	return timeTodayUTC
+}
+
 // ISO8601 returns the ISO8601 representation of Now()
 func ISO8601() string {
 	return timeStrISO8601

@@ -55,6 +55,12 @@ func Today() time.Time {
 	return timeToday
 }
 
+func TodayUTC() time.Time {
+	timeStrMutex.RLock()
+	defer timeStrMutex.RUnlock()
+	return timeTodayUTC
+}
+
 func ISO8601() string {
 	timeStrMutex.RLock()
 	defer timeStrMutex.RUnlock()
