@@ -2,6 +2,8 @@ module github.com/remerge/go-timestr
 
 go 1.21
 
+toolchain go1.26.10
+
 require github.com/stretchr/testify v1.4.0
 
 require (
